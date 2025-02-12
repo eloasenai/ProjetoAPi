@@ -1,4 +1,4 @@
-﻿namespace Vetsys.Agendamentos
+﻿namespace Vetsys.Models
 {
     public class Horarios
     {
