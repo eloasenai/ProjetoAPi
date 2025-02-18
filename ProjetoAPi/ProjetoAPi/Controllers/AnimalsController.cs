@@ -104,5 +104,21 @@ namespace ProjetoAPi.Controllers
         {
             return _context.Animais.Any(e => e.AnimalId == id);
         }
+        // Adicione este método ao AnimalsController
+
+        // GET: api/Animals/Detalhes
+        [HttpGet("Detalhes")]
+        public async Task<ActionResult<IEnumerable<object>>> GetAnimaisDetalhes()
+        {
+            var animaisDetalhes = await _context.Animais
+                .Select(a => new
+                {
+                    Nome = a.nome,
+                    Especie = a.especie
+                })
+                .ToListAsync();
+
+            return Ok(animaisDetalhes);
+        }
     }
 }

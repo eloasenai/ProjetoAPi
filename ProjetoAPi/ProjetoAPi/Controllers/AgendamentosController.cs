@@ -104,5 +104,25 @@ namespace ProjetoAPi.Controllers
         {
             return _context.Agendamentos.Any(e => e.AgendamentoId == id);
         }
+        // Adicione este método ao AgendamentosController
+
+        // GET: api/Agendamentos/Detalhes
+        [HttpGet("Detalhes")]
+        public async Task<ActionResult<IEnumerable<object>>> GetAgendamentosDetalhes()
+        {
+            var agendamentosDetalhes = await _context.Agendamentos
+                .Include(a => a.Cliente)
+                .Include(a => a.Animal)
+                .Include(a => a.Servico)
+                .Select(a => new
+                {
+                    ClienteNome = a.Cliente.nome,
+                    AnimalNome = a.Animal.nome,
+                    ServicoNome = a.Servico.Nome
+                })
+                .ToListAsync();
+
+            return Ok(agendamentosDetalhes);
+        }
     }
 }

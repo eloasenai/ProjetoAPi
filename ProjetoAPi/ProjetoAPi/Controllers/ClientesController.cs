@@ -104,5 +104,21 @@ namespace ProjetoAPi.Controllers
         {
             return _context.Clientes.Any(e => e.ClienteId == id);
         }
+        // Adicione este método ao ClientesController
+
+        // GET: api/Clientes/Detalhes
+        [HttpGet("Detalhes")]
+        public async Task<ActionResult<IEnumerable<object>>> GetClientesDetalhes()
+        {
+            var clientesDetalhes = await _context.Clientes
+                .Select(c => new
+                {
+                    Nome = c.nome,
+                    Endereco = c.endereço
+                })
+                .ToListAsync();
+
+            return Ok(clientesDetalhes);
+        }
     }
 }

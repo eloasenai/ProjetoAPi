@@ -104,5 +104,22 @@ namespace ProjetoAPi.Controllers
         {
             return _context.Servicos.Any(e => e.ServicoId == id);
         }
+        // Adicione este método ao ServicosController
+
+        // GET: api/Servicos/Detalhes
+        [HttpGet("Detalhes")]
+        public async Task<ActionResult<IEnumerable<object>>> GetServicosDetalhes()
+        {
+            var servicosDetalhes = await _context.Servicos
+                .Select(s => new
+                {
+                    Nome = s.Nome,
+                    Preco = s.Preco,
+                    Duracao = s.Duracao
+                })
+                .ToListAsync();
+
+            return Ok(servicosDetalhes);
+        }
     }
 }

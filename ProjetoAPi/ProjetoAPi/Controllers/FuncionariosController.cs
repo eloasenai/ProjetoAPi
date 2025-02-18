@@ -104,5 +104,21 @@ namespace ProjetoAPi.Controllers
         {
             return _context.Funcionarios.Any(e => e.FuncionarioId == id);
         }
+        // Adicione este método ao FuncionariosController
+
+        // GET: api/Funcionarios/Detalhes
+        [HttpGet("Detalhes")]
+        public async Task<ActionResult<IEnumerable<object>>> GetFuncionariosDetalhes()
+        {
+            var funcionariosDetalhes = await _context.Funcionarios
+                .Select(f => new
+                {
+                    Nome = f.nome,
+                    Cargo = f.cargo
+                })
+                .ToListAsync();
+
+            return Ok(funcionariosDetalhes);
+        }
     }
 }
