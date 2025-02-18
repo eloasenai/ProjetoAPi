@@ -3,11 +3,18 @@
     public class Agendamento
     {
         public Guid AgendamentoId { get; set; }
-        public string cliente { get; set; }
-        public string animal { get; set; }
-        public string serviço { get; set; }
-        public string funcionario { get; set; }
-        public string confirmar { get; set; }
-        public string cancelar { get; set; }
+
+        public Guid ClienteId { get; set; }
+        public Cliente? Cliente { get; set; }
+
+        public Guid AnimalId { get; set; }
+        public Animal? Animal { get; set; }
+
+        public Guid FuncionarioId { get; set; }
+        public Funcionario? Funcionario { get; set; }
+
+        public Guid ServicoId { get; set; }
+        public Servico? Servico { get; set; }
+
     }
 }
