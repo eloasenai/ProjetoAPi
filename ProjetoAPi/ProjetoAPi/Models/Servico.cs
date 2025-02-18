@@ -1,4 +1,4 @@
-﻿namespace ProjetoAPi
+﻿namespace ProjetoAPi.Models
 {
     public class Servico
     {
