@@ -2,7 +2,7 @@
 {
     public class Agendamento
     {
-        public Agendamento() { }
+        public Guid AgendamentoId { get; set; }
         public string cliente { get; set; }
         public string animal { get; set; }
         public string serviço { get; set; }
